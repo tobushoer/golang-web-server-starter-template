@@ -3,7 +3,7 @@ evn: dev
 log:
   pkg: zap
 mysql:
-  user: test
+  user: root
   password: test
   dbname: example
   address: 127.0.0.1
