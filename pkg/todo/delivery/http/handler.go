@@ -51,7 +51,7 @@ type postToDoResponse struct {
 // @Failure  500  object  errordef.ErrorInfo  "internal error"
 // @Resource todo
 // @Route /v1/todo [post]
-func (h *ToDoHandler) createToDo(c *gin.Context) {
+func (h *ToDoHandler) createToDoEndpoint(c *gin.Context) {
 	request := &postToDoRequest{}
 	if err := request.Bind(c); err != nil {
 		errordef.GinHTTPResponse(c, errordef.ErrorInfo{
