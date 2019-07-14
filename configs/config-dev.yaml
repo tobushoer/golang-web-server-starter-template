@@ -1,0 +1,10 @@
+evn: dev
+
+log:
+  pkg: zap
+mysql:
+  user: test
+  password: test
+  dbname: example
+  address: 127.0.0.1
+  port: 3306
