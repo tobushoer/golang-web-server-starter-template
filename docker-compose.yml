@@ -5,6 +5,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: example
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
