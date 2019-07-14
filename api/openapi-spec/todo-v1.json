@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Backend API",
+    "description": "Web API server starter",
+    "termsOfService": "http://example.example",
+    "contact": {
+      "name": "tobushoer",
+      "url": "http://example.example",
+      "email": "tobushoer@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://en.wikipedia.org/wiki/MIT_License"
+    },
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://www.fake.com",
+      "description": " Server-1"
+    }
+  ],
+  "paths": {
+    "/v1/todo": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template.pkg.todo.delivery.http.postToDoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template.internal.pkg.errordef.ErrorInfo"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template.internal.pkg.errordef.ErrorInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "todo"
+        ],
+        "summary": "Create a todo.",
+        "description": " Create a todo.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/template.pkg.todo.delivery.http.postToDoRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "template.internal.pkg.errordef.ErrorInfo": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "template.pkg.todo.delivery.http.postToDoRequest": {
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "to do title",
+            "example": "To Do Title"
+          },
+          "content": {
+            "type": "string",
+            "description": "to do content",
+            "example": "this is to do content"
+          }
+        }
+      },
+      "template.pkg.todo.delivery.http.postToDoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "AuthorizationHeader": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Inuput your token"
+      }
+    }
+  },
+  "security": [
+    {
+      "AuthorizationHeader": []
+    }
+  ]
+}
