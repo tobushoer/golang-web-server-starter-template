@@ -1,4 +1,4 @@
-# golang-web-server-starter
+# golang-web-server-starter-template
 
 This project provide a golang web server starter template and have a simple api service example using Uncle Bob's clean architecture.
 
