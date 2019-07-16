@@ -1,0 +1,18 @@
+logLevel = "DEBUG"
+
+[file]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+[frontends]
+  [frontends.frontend1]
+  backend = "backend1"
+    [frontends.frontend1.routes.test_1]
+    rule = "Host:apiserver.localhost"
+
+[backends]
+  [backends.backend1]
+    [backends.backend1.servers.server1]
+    url = "http://host.docker.internal:8080"
