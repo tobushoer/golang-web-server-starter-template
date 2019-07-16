@@ -26,3 +26,8 @@ func (t *toDoUseCases) CreateToDo(todo todo.ToDo) (uint32, error) {
 	}
 	return todo.ID, nil
 }
+
+// ListToDos list todos
+func (t *toDoUseCases) ListToDos() ([]todo.ToDo, error) {
+	return t.repo.ListToDos()
+}

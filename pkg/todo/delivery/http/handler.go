@@ -50,7 +50,7 @@ type postToDoResponse struct {
 // @Failure  400  object  errordef.ErrorInfo  "invalid request"
 // @Failure  500  object  errordef.ErrorInfo  "internal error"
 // @Resource todo
-// @Route /v1/todo [post]
+// @Route /api/v1/todo [post]
 func (h *ToDoHandler) createToDoEndpoint(c *gin.Context) {
 	request := &postToDoRequest{}
 	if err := request.Bind(c); err != nil {
@@ -85,4 +85,28 @@ func (h *ToDoHandler) createToDoEndpoint(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, postToDoResponse{id})
+}
+
+type listToDoResp struct {
+	Data []todo.ToDo `json:"data"`
+}
+
+// @Title List todos.
+// @Description List todos.
+// @Success  200  object  listToDoResp  "success"
+// @Failure  500  object  errordef.ErrorInfo  "internal error"
+// @Resource todo
+// @Route /api/v1/todos [get]
+func (h *ToDoHandler) listToDoEndpoint(c *gin.Context) {
+	todos, err := h.toDoUseCase.ListToDos()
+	if err != nil {
+		errordef.GinHTTPResponse(c, errordef.ErrorInfo{
+			Code:    errordef.ErrCodeInternalError,
+			Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, listToDoResp{
+		Data: todos,
+	})
 }

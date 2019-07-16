@@ -22,7 +22,7 @@
     }
   ],
   "paths": {
-    "/v1/todo": {
+    "/api/v1/todo": {
       "post": {
         "responses": {
           "200": {
@@ -72,6 +72,37 @@
           "required": true
         }
       }
+    },
+    "/api/v1/todos": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template.pkg.todo.delivery.http.listToDoResp"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template.internal.pkg.errordef.ErrorInfo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "todo"
+        ],
+        "summary": "List todos.",
+        "description": " List todos."
+      }
     }
   },
   "components": {
@@ -84,6 +115,41 @@
           },
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "template.pkg.todo.delivery.http.listToDoResp": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 123
+                },
+                "title": {
+                  "type": "string",
+                  "example": "todo title"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "todo content"
+                },
+                "CreatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2019-07-15T14:37:59Z"
+                },
+                "UpdatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2019-07-15T14:37:59Z"
+                }
+              }
+            }
           }
         }
       },
