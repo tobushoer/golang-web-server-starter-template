@@ -9,3 +9,9 @@ run-migrate-db:
 
 generate-openapi:
 	goas --module-path . --main-file-path cmd/webapp/main.go --output api/openapi-spec/webapp-api.json
+
+run-docker-compose-up:
+	docker-compose up -d
+
+run-docker-compose-down:
+	docker-compose down
